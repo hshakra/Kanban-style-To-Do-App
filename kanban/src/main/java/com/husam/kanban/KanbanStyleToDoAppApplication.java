@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class KanbanStyleToDoAppApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(KanbanStyleToDoAppApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(KanbanStyleToDoAppApplication.class, args);
+    }
 
 }
