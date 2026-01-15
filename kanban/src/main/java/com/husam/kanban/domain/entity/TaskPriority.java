@@ -1,4 +1,4 @@
-package com.husam.kanban.domain_entity;
+package com.husam.kanban.domain.entity;
 
 public enum TaskPriority {
     HIGH,

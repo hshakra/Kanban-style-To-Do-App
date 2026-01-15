@@ -1,4 +1,4 @@
-package com.husam.kanban.domain_entity;
+package com.husam.kanban.domain.entity;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -70,7 +70,7 @@ public class Task {
         this.taskDescription = taskDescription;
     }
 
-    public TaskStatus getTaskStat() {
+    public TaskStatus getTaskStatus() {
         return taskStat;
     }
 
