@@ -1,20 +1,21 @@
 function CreateTask({ onUserHome }) {
 
   async function handleSubmit(e) {
-    e.preventDefault(); 
+    e.preventDefault();
 
     // Gather form data
     const task = {
       title: e.target.title.value,
       description: e.target.description.value,
       priority: e.target.priority.value,
+      status: "OPEN",
     };
 
     console.log("Submitting task:", task);
 
     try {
       // Simulated backend POST
-      const response = await fetch("/tasks", {
+      const response = await fetch("/api/ver1/tasks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(task),

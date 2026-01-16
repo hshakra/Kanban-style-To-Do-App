@@ -20,7 +20,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task createTask(CreateTaskRequest request) {
         //creating task
-        Task t = new Task(null, request.title(), request.description(), TaskStatus.OPEN, request.priority());
+        Task t = new Task(null, request.title(), request.description(), request.priority(), TaskStatus.OPEN);
 
         //saving task to repo
         taskRepo.save(t);

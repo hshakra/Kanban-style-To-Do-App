@@ -31,19 +31,20 @@ public class Task {
     @Column(name = "status", nullable = false)
     private TaskStatus taskStat;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "priority", nullable = false)
+    // @Enumerated(EnumType.STRING)
+    // @Column(name = "priority", nullable = false)
+    @Column(name = "priority")
     private TaskPriority taskPriority;
 
     public Task() {
     }
 
-    public Task(UUID id, String title, String taskDescription, TaskStatus taskStat, TaskPriority taskPriority) {
+    public Task(UUID id, String title, String taskDescription, TaskPriority taskPriority, TaskStatus taskStat) {
         this.id = id;
         this.title = title;
         this.taskDescription = taskDescription;
-        this.taskStat = taskStat;
         this.taskPriority = taskPriority;
+        this.taskStat = taskStat;
     }
 
     public UUID getId() {

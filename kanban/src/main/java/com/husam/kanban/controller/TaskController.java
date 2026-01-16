@@ -2,7 +2,6 @@ package com.husam.kanban.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +12,7 @@ import com.husam.kanban.domain.CreateTaskRequest;
 import com.husam.kanban.domain.dto.CreateTaskRequestDto;
 import com.husam.kanban.domain.dto.TaskDto;
 import com.husam.kanban.domain.entity.Task;
+import com.husam.kanban.domain.entity.TaskStatus;
 import com.husam.kanban.mapper.TaskMapper;
 import com.husam.kanban.service.TaskService;
 
@@ -30,10 +30,11 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<TaskDto> createTasK(@Validated @RequestBody CreateTaskRequestDto taskRq) {
+    public ResponseEntity<TaskDto> createTasK(@RequestBody CreateTaskRequestDto taskRq) {
         CreateTaskRequest createTaskRq = taskMapper.fromDto(taskRq);
         Task task = taskService.createTask(createTaskRq);
-        TaskDto createdTaskDto = (TaskDto) taskMapper.toDto(task);
+        task.setTaskStat(TaskStatus.OPEN);
+        TaskDto createdTaskDto = taskMapper.toDto(task);
         return new ResponseEntity<>(createdTaskDto, HttpStatus.CREATED);
     }
 
