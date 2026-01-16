@@ -13,7 +13,7 @@ public class TaskMapperImpl implements TaskMapper {
 
     @Override
     public CreateTaskRequest fromDto(CreateTaskRequestDto dto) {
-        return new CreateTaskRequest(dto.title(), dto.description(), dto.priority());
+        return new CreateTaskRequest(dto.title(), dto.description(), dto.priority(), dto.status());
     }
 
     @Override

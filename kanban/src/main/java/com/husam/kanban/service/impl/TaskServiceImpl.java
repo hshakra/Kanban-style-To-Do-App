@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import com.husam.kanban.domain.CreateTaskRequest;
 import com.husam.kanban.domain.entity.Task;
-import com.husam.kanban.domain.entity.TaskStatus;
 import com.husam.kanban.repo.TaskRepo;
 import com.husam.kanban.service.TaskService;
 
@@ -20,7 +19,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task createTask(CreateTaskRequest request) {
         //creating task
-        Task t = new Task(null, request.title(), request.description(), request.priority(), TaskStatus.OPEN);
+        Task t = new Task(null, request.title(), request.description(), request.priority(), request.status());
 
         //saving task to repo
         taskRepo.save(t);

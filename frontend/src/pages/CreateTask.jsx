@@ -46,9 +46,9 @@ function CreateTask({ onUserHome }) {
 
         <label>Task Priority</label>
         <select name="priority">
-          <option value="low">LOW</option>
-          <option value="medium">MEDIUM</option>
-          <option value="high">HIGH</option>
+          <option value="LOW">LOW</option>
+          <option value="MEDIUM">MEDIUM</option>
+          <option value="HIGH">HIGH</option>
         </select>
         <br />
 
