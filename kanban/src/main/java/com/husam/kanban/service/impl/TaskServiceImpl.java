@@ -1,5 +1,7 @@
 package com.husam.kanban.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.husam.kanban.domain.CreateTaskRequest;
@@ -25,5 +27,10 @@ public class TaskServiceImpl implements TaskService {
         taskRepo.save(t);
 
         return t;
+    }
+
+    @Override
+    public List<Task> listTasks() {
+        return taskRepo.findAll();
     }
 }
