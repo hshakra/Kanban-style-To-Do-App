@@ -20,14 +20,14 @@ public class User {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name = "user", nullable = false)
+    @Column(name = "username", nullable = false)
     private String name;
 
-    @Column(name = "pswdHash", nullable = false)
+    @Column(name = "pass_hash", nullable = false)
     private String passwordHash;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "userRoles", nullable = false)
+    @Column(name = "role", nullable = false)
     private UserRoles role;
 
     public User(UUID id, String name, String passwordHash, UserRoles role) {

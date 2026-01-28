@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(CreateUserRequest request) {
-        User x = new User(null, request.name(), request.passHash(), request.role());
+        User x = new User(null, request.username(), request.passHash(), request.role());
         userRepo.save(x);
         return x;
     }

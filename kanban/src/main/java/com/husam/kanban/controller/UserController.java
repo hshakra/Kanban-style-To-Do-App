@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.husam.kanban.domain.CreateUserRequest;
+import com.husam.kanban.domain.dto.CreateUserRequestDto;
 import com.husam.kanban.domain.dto.UserDto;
 import com.husam.kanban.domain.entity.User;
 import com.husam.kanban.mapper.UserMapper;
@@ -28,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createTasK(@RequestBody UserDto userReq) {
+    public ResponseEntity<UserDto> createTasK(@RequestBody CreateUserRequestDto userReq) {
         CreateUserRequest createUserReq = userMapper.fromDto(userReq);
         User user = userService.createUser(createUserReq);
         UserDto createdTaskDto = userMapper.toDto(user);

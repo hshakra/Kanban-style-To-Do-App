@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 
-function CreateUser({ onUserHome }) {
+function CreateUser() {
   const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
 
     const user = {
       username: e.target.username.value,
-      password: e.target.password.value,
+      passHash: e.target.password.value,
       role: "USER",
     };
 
@@ -22,8 +22,6 @@ function CreateUser({ onUserHome }) {
       });
 
       console.log("Response status:", response.status);
-
-      onUserHome();
     } catch (error) {
       console.error("Error submitting task:", error);
     }

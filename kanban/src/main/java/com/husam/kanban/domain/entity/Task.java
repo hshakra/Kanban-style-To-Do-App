@@ -24,7 +24,7 @@ public class Task {
     @Column(name = "tile", nullable = false)
     private String title;
 
-    @Column(name = "taskDesc", updatable = true)
+    @Column(name = "description", updatable = true)
     private String taskDescription;
 
     @Enumerated(EnumType.STRING)
