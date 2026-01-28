@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
-function Login() {
+
+function CreateUser({ onUserHome }) {
   const navigate = useNavigate();
-
   async function handleSubmit(e) {
-    e.preventDefaultt();
+    e.preventDefault();
 
-    //getting the login credentials
     const user = {
       username: e.target.username.value,
       password: e.target.password.value,
       role: "USER",
     };
+
+    console.log("Submitting user:", user);
 
     try {
       // Simulated backend POST
@@ -20,17 +21,18 @@ function Login() {
         body: JSON.stringify(user),
       });
 
-      // Optional: log fake response
       console.log("Response status:", response.status);
 
-      // Navigate back to userHome
       onUserHome();
     } catch (error) {
       console.error("Error submitting task:", error);
     }
   }
+
   return (
     <div>
+      <button onClick={() => navigate("/user-home")}>Go to User Home</button>
+      <button onClick={() => navigate("/home")}>Back to Home</button>
       <form id="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
 
@@ -51,18 +53,10 @@ function Login() {
         ></textarea>
         <br />
 
-        <button type="submit">Login</button>
+        <button type="submit">Create User</button>
       </form>
-      <button
-        onClick={() => {
-          console.log("button cliked");
-          navigate("/home");
-        }}
-      >
-        Home
-      </button>
     </div>
   );
 }
 
-export default Login;
+export default CreateUser;

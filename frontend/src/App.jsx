@@ -1,38 +1,23 @@
-import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import CreateTask from "./pages/CreateTask";
 import Login from "./pages/Login";
 import UserHome from "./pages/UserHome";
+import CreateUser from "./pages/CreateUser";
 import "./App.css";
 
 function App() {
-  const [view, setView] = useState("home");
-
   return (
-    <>
-      {view === "home" && (
-        <Home
-          onLogin={() => setView("login")} />
-      )}
-
-      {view === "create" && (
-        <CreateTask onUserHome={() => setView("UserHome")} />
-      )}
-
-      {view === "login" && (
-        <Login
-          onBack={() => setView("home")}
-          onUserHome={() => setView("UserHome")} />
-      )}
-
-      {view === "UserHome" && (
-        <UserHome onBack={() => setView("home")}
-          onCreateTask={() => setView("create")}
-        />
-
-      )}
-
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/create-user" element={<CreateUser />} />
+        <Route path="/user-home" element={<UserHome />} />
+        <Route path="/create-task" element={<CreateTask />} />
+      </Routes>
+    </Router>
   );
 }
 

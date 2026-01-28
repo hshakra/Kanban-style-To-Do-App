@@ -1,5 +1,6 @@
+import { useNavigate } from "react-router-dom";
 function CreateTask({ onUserHome }) {
-
+  const navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -33,6 +34,7 @@ function CreateTask({ onUserHome }) {
 
   return (
     <div>
+      <button onClick={() => navigate("/user-home")}>Back to User Home</button>
       <form id="new-task-form" onSubmit={handleSubmit}>
         <h2>New Task</h2>
 
@@ -57,10 +59,11 @@ function CreateTask({ onUserHome }) {
 
       <br />
 
-      <button type="button" onClick={onUserHome}>Back</button>
+      <button type="button" onClick={onUserHome}>
+        Back
+      </button>
     </div>
   );
 }
 
 export default CreateTask;
-

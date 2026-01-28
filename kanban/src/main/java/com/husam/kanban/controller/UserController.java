@@ -34,4 +34,5 @@ public class UserController {
         UserDto createdTaskDto = userMapper.toDto(user);
         return new ResponseEntity<>(createdTaskDto, HttpStatus.CREATED);
     }
+
 }
