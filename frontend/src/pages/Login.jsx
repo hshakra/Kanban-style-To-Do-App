@@ -44,11 +44,7 @@ function Login() {
         <br />
 
         <label>Password</label>
-        <textarea
-          type="password"
-          name="password"
-          placeholder="*********"
-        ></textarea>
+        <input type="password" name="pswd"></input>
         <br />
 
         <button type="submit">Login</button>

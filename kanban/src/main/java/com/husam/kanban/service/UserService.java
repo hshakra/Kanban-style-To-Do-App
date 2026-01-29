@@ -6,4 +6,7 @@ import com.husam.kanban.domain.entity.User;
 public interface UserService {
 
     User createUser(CreateUserRequest request);
+
+    boolean validateLogin(String email, String passHash);
+
 }

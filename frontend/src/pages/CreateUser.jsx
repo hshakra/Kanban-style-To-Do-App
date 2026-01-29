@@ -44,11 +44,7 @@ function CreateUser() {
         <br />
 
         <label>Password</label>
-        <textarea
-          type="password"
-          name="password"
-          placeholder="*********"
-        ></textarea>
+        <input type="password" name="password"></input>
         <br />
 
         <button type="submit">Create User</button>
