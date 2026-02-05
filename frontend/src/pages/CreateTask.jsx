@@ -52,7 +52,13 @@ function CreateTask() {
       <div className="create-task-container">
         <button className="back-button" onClick={() => navigate("/user-home")}>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M12.5 5L7.5 10L12.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path
+              d="M12.5 5L7.5 10L12.5 15"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
           Back to Dashboard
         </button>
@@ -61,7 +67,13 @@ function CreateTask() {
           <div className="task-header">
             <div className="task-icon">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path
+                  d="M12 5V19M5 12H19"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </div>
             <h1>Create New Task</h1>
@@ -103,7 +115,9 @@ function CreateTask() {
               <div className="priority-options">
                 <button
                   type="button"
-                  className={`priority-button high ${priority === "HIGH" ? "active" : ""}`}
+                  className={`priority-button high ${
+                    priority === "HIGH" ? "active" : ""
+                  }`}
                   onClick={() => setPriority("HIGH")}
                 >
                   <span className="priority-dot high"></span>
@@ -111,7 +125,9 @@ function CreateTask() {
                 </button>
                 <button
                   type="button"
-                  className={`priority-button medium ${priority === "MEDIUM" ? "active" : ""}`}
+                  className={`priority-button medium ${
+                    priority === "MEDIUM" ? "active" : ""
+                  }`}
                   onClick={() => setPriority("MEDIUM")}
                 >
                   <span className="priority-dot medium"></span>
@@ -119,7 +135,9 @@ function CreateTask() {
                 </button>
                 <button
                   type="button"
-                  className={`priority-button low ${priority === "LOW" ? "active" : ""}`}
+                  className={`priority-button low ${
+                    priority === "LOW" ? "active" : ""
+                  }`}
                   onClick={() => setPriority("LOW")}
                 >
                   <span className="priority-dot low"></span>
@@ -129,20 +147,30 @@ function CreateTask() {
             </div>
 
             <div className="form-actions">
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="cancel-button"
                 onClick={() => navigate("/user-home")}
               >
                 Cancel
               </button>
-              <button type="submit" className="submit-button" disabled={loading}>
+              <button
+                type="submit"
+                className="submit-button"
+                disabled={loading}
+              >
                 {loading ? (
                   <span className="loading-spinner"></span>
                 ) : (
                   <>
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M16.5 6.5L7.5 15.5L3.5 11.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path
+                        d="M16.5 6.5L7.5 15.5L3.5 11.5"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
                     </svg>
                     <span>Create Task</span>
                   </>
