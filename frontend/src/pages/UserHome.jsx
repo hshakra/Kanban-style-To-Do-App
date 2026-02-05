@@ -56,6 +56,33 @@ function UserHome() {
     // For now, we'll just keep the UI updated
   }
 
+  const handleDeleteTask = async (taskId) => {
+    if (!window.confirm("Are you sure you want to delete this task?")) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/ver1/tasks/${taskId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log("Delete response status:", response.status);
+      console.log("Delete response:", await response.text());
+
+      if (response.ok) {
+        setTasks(tasks.filter((task) => task.id !== taskId));
+      } else {
+        alert("Failed to delete task");
+      }
+    } catch (error) {
+      console.error("Error deleting task:", error);
+      alert("Error deleting task: " + error.message);
+    }
+  };
+
   const openTasks = tasks.filter((task) => task.status === "OPEN");
   const doneTasks = tasks.filter((task) => task.status === "DONE");
 
@@ -194,8 +221,35 @@ function UserHome() {
                             color: getPriorityColor(task.priority),
                           }}
                         >
-                          {task.taskPriority}
+                          {task.priority}
                         </span>
+                        <button
+                          className="delete-button"
+                          onClick={() => handleDeleteTask(task.id)}
+                          aria-label="Delete task"
+                        >
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path
+                              d="M3 6H5H21"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </button>
                       </div>
                       {task.taskDescription && (
                         <p className="task-description">

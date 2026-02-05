@@ -9,5 +9,4 @@ import com.husam.kanban.domain.entity.Task;
 
 @Repository
 public interface TaskRepo extends JpaRepository<Task, UUID> {
-
 }

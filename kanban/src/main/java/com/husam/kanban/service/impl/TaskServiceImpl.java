@@ -1,6 +1,7 @@
 package com.husam.kanban.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -32,5 +33,13 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> listTasks() {
         return taskRepo.findAll();
+    }
+
+    @Override
+    public void deleteTask(UUID id) {
+        if (!taskRepo.existsById(id)) {
+            throw new RuntimeException("Task not found with id: " + id);
+        }
+        taskRepo.deleteById(id);
     }
 }
