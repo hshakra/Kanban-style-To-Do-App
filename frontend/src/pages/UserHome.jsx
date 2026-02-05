@@ -40,20 +40,54 @@ function UserHome() {
   }
 
   async function handleDrop(newStatus) {
-    if (!draggedTask || draggedTask.taskStatus === newStatus) {
+    if (!draggedTask || draggedTask.status === newStatus) {
+      // Changed taskStatus to status
       setDraggedTask(null);
       return;
     }
 
+    // Store the old status for rollback if needed
+    const oldStatus = draggedTask.status;
+
     // Optimistically update UI
-    const updatedTasks = tasks.map((task) =>
-      task.id === draggedTask.id ? { ...task, taskStatus: newStatus } : task
+    const updatedTasks = tasks.map(
+      (task) =>
+        task.id === draggedTask.id ? { ...task, status: newStatus } : task // Changed taskStatus to status
     );
     setTasks(updatedTasks);
-    setDraggedTask(null);
 
-    // In a real app, you'd update the backend here
-    // For now, we'll just keep the UI updated
+    try {
+      // Udate backend
+      const response = await fetch(`/api/ver1/tasks/${draggedTask.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: draggedTask.id,
+          title: draggedTask.title,
+          taskDescription: draggedTask.description,
+          taskPriority: draggedTask.priority,
+          taskStat: newStatus,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update task");
+      }
+    } catch (error) {
+      console.error("Error updating task:", error);
+
+      // Rollback on error - restore old status
+      const rolledBackTasks = tasks.map((task) =>
+        task.id === draggedTask.id ? { ...task, status: oldStatus } : task
+      );
+      setTasks(rolledBackTasks);
+
+      alert("Failed to update task status");
+    } finally {
+      setDraggedTask(null);
+    }
   }
 
   const handleDeleteTask = async (taskId) => {
@@ -251,10 +285,8 @@ function UserHome() {
                           </svg>
                         </button>
                       </div>
-                      {task.taskDescription && (
-                        <p className="task-description">
-                          {task.taskDescription}
-                        </p>
+                      {task.description && (
+                        <p className="task-description">{task.description}</p>
                       )}
                       <div className="task-footer">
                         <span className="task-id">#{task.id.slice(0, 8)}</span>

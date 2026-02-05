@@ -13,4 +13,6 @@ public interface TaskService {
     List<Task> listTasks();
 
     void deleteTask(UUID id);
+
+    Task updateTaskStatus(UUID id, Task st);
 }

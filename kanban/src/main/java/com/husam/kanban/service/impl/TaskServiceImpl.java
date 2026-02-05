@@ -42,4 +42,17 @@ public class TaskServiceImpl implements TaskService {
         }
         taskRepo.deleteById(id);
     }
+
+    @Override
+    public Task updateTaskStatus(UUID id, Task updatedTask) {
+        Task task = taskRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
+
+        task.setTaskStat(updatedTask.getTaskStatus());
+        task.setTitle(updatedTask.getTitle());
+        task.setTaskDescription(updatedTask.getTaskDescription());
+        task.setTaskPriority(updatedTask.getTaskPriority());
+
+        return taskRepo.save(task);
+    }
 }
